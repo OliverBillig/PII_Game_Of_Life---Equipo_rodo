@@ -2,6 +2,7 @@ using System;
 using System.Globalization;
 using System.Text;
 using System.Threading;
+using Library;
 
 public class PrintBoard
 {
@@ -39,11 +40,8 @@ public class PrintBoard
                 s.Append("\n");
             }
             Console.WriteLine(s.ToString());
+            Engine.NextGeneration();
 
-            //=================================================
-            //Invocar método para calcular siguiente generación
-            //=================================================
-            
             Thread.Sleep(300); // cooldown
         }
     }
