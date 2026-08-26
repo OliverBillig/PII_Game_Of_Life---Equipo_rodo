@@ -9,8 +9,8 @@ namespace Library
     {
         public Cell[,] NextGeneration(Cell[,] tablero)
         {
-            int ancho = tablero.GetLength(var1);
-            int altura = tablero.GetLength(var2);
+            int ancho = tablero.GetLength(Board.Ancho);
+            int altura = tablero.GetLength(Board.Alto);
             Cell[,] tableroClon = new Cell[ancho, altura];
 
             for (int x = 0; x < ancho; x++)
