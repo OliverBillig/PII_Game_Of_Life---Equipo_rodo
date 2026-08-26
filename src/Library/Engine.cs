@@ -1,57 +1,63 @@
+// conocer el tablero
+// crear generación
 
-public class Engine
+using System;
+
+namespace Library
 {
-    public Engine()
+    public class Engine
     {
-    }
-
-    public bool[,] NextGeneration(bool[,] gameBoard)
-    {
-        bool[,] gameBoard = /* contenido del tablero */;
-        int boardWidth = gameBoard.GetLength(var1);
-        int boardHeight = gameBoard.GetLength(var2);
-        bool[,] cloneboard = new bool[boardWidth, boardHeight];
-        for (int x = 0; x < boardWidth; x++)
+        public Cell[,] NextGeneration(Cell[,] tablero)
         {
-            for (int y = 0; y < boardHeight; y++)
+            int ancho = tablero.GetLength(var1);
+            int altura = tablero.GetLength(var2);
+            Cell[,] tableroClon = new Cell[ancho, altura];
+
+            for (int x = 0; x < ancho; x++)
             {
-                int aliveNeighbors = 0;
-                for (int i = x-1; i<=x+1;i++)
+                for (int y = 0; y < altura; y++)
                 {
-                    for (int j = y-1;j<=y+1;j++)
+                    int vecinosVivos = 0;
+                    for (int i = x - 1; i <= x + 1; i++)
                     {
-                        if(i>=0 && i<boardWidth && j>=0 && j < boardHeight && gameBoard[i,j])
+                        for (int j = y - 1; j <= y + 1; j++)
                         {
-                            aliveNeighbors++;
+                            if (i >= 0 && i < ancho && j >= 0 && j < altura && tablero[i, j].GetEstado())
+                            {
+                                vecinosVivos++;
+                            }
                         }
                     }
-                }
-                if(gameBoard[x,y])
-                {
-                    aliveNeighbors--;
-                }
-                if (gameBoard[x,y] && aliveNeighbors < 2)
-                {
-                    // Célula muere por baja población
-                    cloneboard[x,y] = false;
-                }
-                else if (gameBoard[x,y] && aliveNeighbors > 3)
-                {
-                    // Célula muere por sobrepoblación
-                    cloneboard[x,y] = false;
-                }
-                else if (!gameBoard[x,y] && aliveNeighbors == 3)
-                {
-                    // Célula nace por reproducción
-                    cloneboard[x,y] = true;
-                }
-                else
-                {
-                    // Célula mantiene el estado que tenía
-                    cloneboard[x,y] = gameBoard[x,y];
+
+                    if (tablero[x, y].GetEstado())
+                    {
+                        vecinosVivos--;
+                    }
+
+                    Cell nuevaCelula = new Cell();
+
+                    if (tablero[x, y].GetEstado() && vecinosVivos < 2)
+                    {
+                        nuevaCelula.SetEstado(false); // muere por baja población
+                    }
+                    else if (tablero[x, y].GetEstado() && vecinosVivos > 3)
+                    {
+                        nuevaCelula.SetEstado(false); // muere por sobrepoblación
+                    }
+                    else if (!tablero[x, y].GetEstado() && vecinosVivos == 3)
+                    {
+                        nuevaCelula.SetEstado(true); // nace por reproducción
+                    }
+                    else
+                    {
+                        nuevaCelula.SetEstado(tablero[x, y].GetEstado()); // mantiene el estado
+                    }
+
+                    tableroClon[x, y] = nuevaCelula;
                 }
             }
+
+            return tableroClon;
         }
-        return cloneboard;
     }
 }
