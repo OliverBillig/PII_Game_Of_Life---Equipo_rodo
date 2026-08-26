@@ -14,7 +14,7 @@ public class Cell
     }
 
     // cambiar su estado
-    public void SetEstado(bool nuevoEstado) // funcion que cambia el estado de la celula a un nuevo estado
+    public void SetEstado(bool nuevoEstado) // cambia el estado de la celula a nuevo estado
     {
         estado = nuevoEstado;
     }
