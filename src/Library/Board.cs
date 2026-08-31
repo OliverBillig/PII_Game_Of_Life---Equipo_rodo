@@ -1,20 +1,44 @@
+//------------------------------------------------------------------------------
+// <copyright file="Board.cs" company="Universidad Católica del Uruguay">
+//     Copyright (c) Programación II. Derechos reservados.
+// </copyright>
+//------------------------------------------------------------------------------
+
 public class Board
 {
     private readonly Cell[,] celulas;
 
-    public Board(Cell[,] celulas)
+    public Board(int ancho, int alto)
     {
-        this.celulas = celulas;
-        this.Ancho = celulas.GetLength(0);
-        this.Alto = celulas.GetLength(1);
+        this.Ancho = ancho;
+        this.Alto = alto;
+        this.celulas = new Cell[ancho, alto];
+
+        for (int x = 0; x < ancho; x++)
+        {
+            for (int y = 0; y < alto; y++)
+            {
+                this.celulas[x, y] = new Cell();
+            }
+        }
     }
 
     public int Ancho { get; }
 
     public int Alto { get; }
 
-    public Cell ObtenerCelula(int x, int y)
+    public void SetEstado(int x, int y, bool viva)
     {
-        return this.celulas[x, y];
+        this.celulas[x, y].SetEstado(viva);
+    }
+
+    public bool GetEstado(int x, int y)
+    {
+        if (x < 0 || x >= this.Ancho || y < 0 || y >= this.Alto)
+        {
+            return false;
+        }
+
+        return this.celulas[x, y].GetEstado();
     }
 }

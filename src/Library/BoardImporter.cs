@@ -4,28 +4,27 @@
 // </copyright>
 //------------------------------------------------------------------------------
 
-using System;
 using System.IO;
 
-public class BoardImporter
+public static class BoardImporter
 {
-    public Cell[,] ImportarDesdeArchivo(string rutaArchivo)
+    public static Board ImportarDesdeArchivo(string rutaArchivo)
     {
         string[] lineas = File.ReadAllLines(rutaArchivo);
 
         int altura = lineas.Length;
         int ancho = lineas[0].Length;
 
-        Cell[,] tablero = new Cell[ancho, altura];
+        Board tablero = new Board(ancho, altura);
 
         for (int y = 0; y < altura; y++)
         {
             string linea = lineas[y];
             for (int x = 0; x < ancho; x++)
             {
-                Cell celula = new Cell();
-                celula.SetEstado(linea[x] == '1');
-                tablero[x, y] = celula;
+                bool viva = linea[x] == '1';
+
+                tablero.SetEstado(x, y, viva);
             }
         }
 
