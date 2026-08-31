@@ -17,7 +17,6 @@ public class PrintBoard
         this.height = height;
     }
 
-
     public void Run() // runea el while que hace el recorrido de la tabla
     {
         while (true)

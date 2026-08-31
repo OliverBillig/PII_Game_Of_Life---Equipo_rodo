@@ -7,7 +7,7 @@ namespace Library
 {
     public class Engine
     {
-        public Cell[,] NextGeneration(Board tablero)
+        public Board NextGeneration(Board tablero)
         {
             int ancho = tablero.Ancho;
             int altura = tablero.Alto;
@@ -56,7 +56,7 @@ namespace Library
                 }
             }
 
-            return tableroClon;
+            return new Board(tableroClon);
         }
     }
 }
