@@ -1,9 +1,6 @@
-// conocer el tablero
-// crear generación
-
 using System;
 
-namespace Library
+namespace Ucu.Poo.GameOfLife
 {
     public class Engine
     {
