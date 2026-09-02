@@ -1,9 +1,3 @@
-//------------------------------------------------------------------------------
-// <copyright file="BoardImporter.cs" company="Universidad Católica del Uruguay">
-//     Copyright (c) Programación II. Derechos reservados.
-// </copyright>
-//------------------------------------------------------------------------------
-
 using System.IO;
 
 public static class BoardImporter
